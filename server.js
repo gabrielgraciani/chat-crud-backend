@@ -6,7 +6,7 @@ const app = new Koa();
 const server = http.createServer(app.callback());
 const io = socket(server);
 
-const SERVER_HOST = 'localhost';
+const SERVER_HOST = 'https://chat-crud-backend.herokuapp.com';
 const SERVER_PORT = 8080;
 
 io.on('connection', socket => {
