@@ -1,13 +1,13 @@
-const Koa = require('koa');
-const http = require('http');
 const socket = require('socket.io');
+const express = require('express');
+const app = express();
+const server = require('http').Server(app);
 
-const app = new Koa();
-const server = http.createServer(app.callback());
 const io = socket(server);
 
-const SERVER_HOST = 'https://chat-crud-backend.herokuapp.com';
 const SERVER_PORT = 8080;
+
+app.use(express.static(__dirname));
 
 io.on('connection', socket => {
     console.log('[IO] Connection => Server has a new connection');
@@ -20,7 +20,7 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(SERVER_PORT, SERVER_HOST, () => {
-    console.log(`[HTTP] Listen => Server is running at http://${SERVER_HOST}:${SERVER_PORT}`);
+server.listen(SERVER_PORT, () => {
+    console.log(`[HTTP] Listen => Server is running at port ${SERVER_PORT}`);
     console.log('[HTTP] Listen => Press CTRL+C to stop it');
 });
