@@ -23,7 +23,7 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(SERVER_PORT, () => {
+server.listen(process.env.PORT || SERVER_PORT, () => {
     console.log(`[HTTP] Listen => Server is running at port ${SERVER_PORT}`);
     console.log('[HTTP] Listen => Press CTRL+C to stop it');
 });
