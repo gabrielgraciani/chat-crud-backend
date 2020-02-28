@@ -1,4 +1,4 @@
-#Projeto Venturus
+#Projeto chat - crud
 
 ##Passos para funcionar em sua máquina
 
