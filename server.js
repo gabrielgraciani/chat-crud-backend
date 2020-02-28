@@ -3,13 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-app.use(cors);
 const server = require('http').Server(app);
 
 const io = socket(server);
 
 const SERVER_PORT = 8080;
 
+app.use(cors);
 app.use(express.static(__dirname));
 
 io.on('connection', socket => {
