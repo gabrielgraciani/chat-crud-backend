@@ -1,14 +1,16 @@
+const socket = require('socket.io');
 const express = require('express');
-let app = express();
-let http = require('http').Server(app);
-var io = require('socket.io')(http);
 const cors = require('cors');
+const app = express();
 
-app.set('port', (process.env.PORT || 8080));
+const server = require('http').Server(app);
+
+const io = socket(server);
+
+const SERVER_PORT = 8080;
 
 app.use(cors);
-app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname));
 
 io.on('connection', socket => {
     console.log('[IO] Connection => Server has a new connection');
@@ -21,6 +23,7 @@ io.on('connection', socket => {
     });
 });
 
-http.listen(app.get('port'), () => {
+server.listen(process.env.PORT || SERVER_PORT, () => {
+    console.log(`[HTTP] Listen => Server is running at port ${SERVER_PORT}`);
     console.log('[HTTP] Listen => Press CTRL+C to stop it');
 });
